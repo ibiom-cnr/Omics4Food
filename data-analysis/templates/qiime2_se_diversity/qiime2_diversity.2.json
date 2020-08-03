@@ -1,0 +1,47 @@
+{
+  "name": "{{ job_run_id }}_01_qiime2_se_feature_classifier",
+  "description": "Feature classifier with vsearch",
+  "command": "qiime diversity core-metrics-phylogenetic --i-phylogeny /data/$WORKING_DIR/$OUTPUT_DIR/rooted-tree.qza --i-table /data/$WORKING_DIR/$OUTPUT_DIR/table-dada2.qza --p-sampling-depth $SAMPLING_DEPTH --m-metadata-file /data/$WORKING_DIR/$OUTPUT_DIR/sample_metadata.tsv --output-dir /data/$WORKING_DIR/$OUTPUT_DIR/core-metrics-results",
+
+
+
+qiime feature-classifier classify-consensus-vsearch --i-query rep-seqs-dada2.qza --i-reference-reads $REFERENCE_READS --i-reference-taxonomy $REFERENCE_TAXONOMY --p-threads $P_THREADS --o-classification taxonomy.qza
+
+
+
+  "shell": true,
+  "retries": 1,
+  "cpus": 1.0,
+  "mem": 500.0,
+  "schedule": "R1//PT1M",
+  "parents": [
+    "{{ job_run_id }}_01_qiime2_se_create_core_metric_phylogenetic"
+  ],
+  "container": {
+    "type": "DOCKER",
+    "image": "qiime2/core:2019.10",
+    "forcePullImage": true,
+    "volumes": [
+      {
+        "containerPath": "/data",
+        "hostPath": "/data",
+        "mode": "RW"
+      }
+    ],
+    "parameters": [
+      {
+        "key": "user",
+        "value": "root"
+      }
+    ]
+  },
+  "environmentVariables": [
+    { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
+    { "name": "INPUT_DIR", "value": "input_data" },
+    { "name": "DATA_DIR", "value": "emp-single-end-sequences" },
+    { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
+    { "name": "REFERENCE_READS", "value": "silva_132_99_16S.qza" },
+    { "name": "REFERENCE_TAXONOMY", "value": "taxonomy_7_levels.qza" },
+    { "name": "P_THREADS", "value": "5" }
+  ]
+}

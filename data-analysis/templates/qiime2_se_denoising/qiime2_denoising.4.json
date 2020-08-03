@@ -1,0 +1,39 @@
+{
+  "name": "{{ job_run_id }}_04_qiime2_se_dada2",
+  "description": "Run qiime dada2",
+  "command": "qiime dada2 denoise-single --i-demultiplexed-seqs /data/$WORKING_DIR/$OUTPUT_DIR/demux.qza --p-trunc-len $TRUNC_LEN --p-trim-left $TRIM_LEN --o-representative-sequences /data/$WORKING_DIR/$OUTPUT_DIR/rep-seqs-dada2.qza --o-table /data/$WORKING_DIR/$OUTPUT_DIR/table-dada2.qza --o-denoising-stats /data/$WORKING_DIR/$OUTPUT_DIR/stats-dada2.qza",
+  "shell": true,
+  "retries": 1,
+  "cpus": 2.0,
+  "mem": 2000.0,
+  "schedule": "R1//PT1M",
+  "parents": [
+    "{{ job_run_id }}_03_qiime2_se_demux_summarize"
+  ],
+  "container": {
+    "type": "DOCKER",
+    "image": "qiime2/core:2019.10",
+    "forcePullImage": true,
+    "volumes": [
+      {
+        "containerPath": "/data",
+        "hostPath": "/data",
+        "mode": "RW"
+      }
+    ],
+    "parameters": [
+      {
+        "key": "user",
+        "value": "root"
+      }
+    ]
+  },
+  "environmentVariables": [
+    { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
+    { "name": "INPUT_DIR", "value": "input_data" },
+    { "name": "DATA_DIR", "value": "emp-single-end-sequences" },
+    { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
+    { "name": "TRUNC_LEN", "value": 120 },
+    { "name": "TRIM_LEN", "value": 0 }
+  ]
+}
