@@ -8,7 +8,13 @@ Welcome to Omics4Food's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: User documentation
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Technical documentation
+
+   tech_documentation/mesos.rst
 
 
 
