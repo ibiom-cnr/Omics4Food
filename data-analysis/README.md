@@ -1,5 +1,5 @@
-Omics4Food: techincal implementation
-====================================
+Omics4Food: data analysis
+=========================
 
 Mesos CURL
 ----------
