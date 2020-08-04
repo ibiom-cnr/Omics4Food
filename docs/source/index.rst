@@ -15,8 +15,7 @@ Welcome to Omics4Food's documentation!
    :caption: Technical documentation
 
    tech_documentation/mesos.rst
-
-
+   tech_documentation/workflow.rst
 
 Indices and tables
 ==================
