@@ -33,7 +33,7 @@
     { "name": "INPUT_DIR", "value": "input_data" },
     { "name": "DATA_DIR", "value": "emp-single-end-sequences" },
     { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
-    { "name": "TRUNC_LEN", "value": 120 },
-    { "name": "TRIM_LEN", "value": 0 }
+    { "name": "TRUNC_LEN", "value": "{{ trunc_len }}" },
+    { "name": "TRIM_LEN", "value": "{{ trim_len }}" }
   ]
 }

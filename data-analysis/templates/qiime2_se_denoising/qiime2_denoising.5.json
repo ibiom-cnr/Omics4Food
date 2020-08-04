@@ -1,6 +1,6 @@
 {
   "name": "{{ job_run_id }}_05_qiime2_se_feature_table_summarize",
-  "description": "Run qiime future table summarize",
+  "description": "Run qiime feature table summarize",
   "command": "qiime feature-table summarize --i-table /data/$WORKING_DIR/$OUTPUT_DIR/table-dada2.qza --o-visualization /data/$WORKING_DIR/$OUTPUT_DIR/table.qzv --m-sample-metadata-file /data/$WORKING_DIR/$INPUT_DIR/sample_metadata.tsv",
   "shell": true,
   "retries": 1,
