@@ -1,0 +1,38 @@
+{
+  "name": "{{ job_run_id }}_fastqc",
+  "description": "Running fastqc job",
+  "command": "cd /data/$WORKING_DIR && mkdir -p $OUTPUT_DIR && fastqc $INPUT_DIR/$DATA_DIR/*.fastq.gz -o $OUTPUT_DIR",
+  "shell": true,
+  "retries": 1,
+  "cpus": 1.0,
+  "mem": 500.0,
+  "schedule": "R1//PT1M",
+  "parents": [
+    "{{ job_run_id }}"
+  ],
+  "container": {
+    "type": "DOCKER",
+    "image": "biocontainers/fastqc:0.11.5",
+    "forcePullImage": true,
+    "volumes": [
+      {
+        "containerPath": "/data",
+        "hostPath": "/data",
+        "mode": "RW"
+      }
+    ],
+    "parameters": [
+      {
+        "key": "user",
+        "value": "root"
+      }
+    ]
+  },
+  "environmentVariables": [
+    { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
+    { "name": "INPUT_DIR", "value": "input_data" },
+    { "name": "DATA_DIR", "value": "emp-paired-end-sequences" },
+    { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}/fastqc" },
+    { "name": "OUTPUT_FILE", "value": "output_{{ job_run_id }}/fastqc.tar.gz" }
+  ]
+}

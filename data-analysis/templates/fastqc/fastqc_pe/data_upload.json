@@ -1,0 +1,48 @@
+{
+  "name": "{{ job_run_id }}_data_upload",
+  "description": "Download data from swift",
+  "command": "swift-upload $USERNAME $PROJECT_ID",
+  "shell": true,
+  "retries": 1,
+  "cpus": 1.0,
+  "mem": 500.0,
+  "schedule": "R1//PT1M",
+  "parents": [
+    "{{ job_run_id }}_prepare_data_upload"
+  ],
+  "container": {
+    "type": "DOCKER",
+    "image": "omics4food/data-io",
+    "forcePullImage": true,
+    "volumes": [
+      {
+        "containerPath": "/data",
+        "hostPath": "/data",
+        "mode": "RW"
+      }
+    ],
+    "parameters": [
+      {
+        "key": "user",
+        "value": "root"
+      }
+    ]
+  },
+  "environmentVariables": [
+    { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
+    { "name": "DATA_URL", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/4AFD40C4DF01B75F35CB90ECFE789D91/81EE76C6F5210A26CE981AD81155B17E/test-data.tar.gz" },
+    { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
+    { "name": "USERNAME", "value": "testservizi"},
+    { "name": "PROJECT_ID", "value": "3"},
+    { "name": "OUTPUT_PROTOCOL", "value": "swift+keystone"},
+    { "name": "OUTPUT_ENDPOINT", "value": "https://cloud.recas.ba.infn.it:5000/v3"},
+    { "name": "OS_IDENTITY_API_VERSION", "value": "3"},
+    { "name": "OS_PROJECT_DOMAIN_ID", "value": "default" },
+    { "name": "OUTPUT_REGION", "value": "recas-cloud"},
+    { "name": "OUTPUT_TENANT", "value": "*****"},
+    { "name": "OUTPUT_USERNAME", "value": "*****"},
+    { "name": "OUTPUT_PASSWORD", "value": "*****"},
+    { "name": "OUTPUT_FILENAMES", "value": "output_{{ job_run_id }}/fastqc.tar.gz" },
+    { "name": "UPLOAD_DIR", "value": "/data/{{ job_run_id }}" }
+  ]
+}
