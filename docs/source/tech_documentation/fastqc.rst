@@ -86,4 +86,20 @@ ous step.
           OUTPUT_PASSWORD: *****
 
 
+Paired End version
+------------------
+
+.. note::
+
+   For FastQC paired end and single end workflows are the same. 
+
+Only two variable has to be changed:
+
+::
+
+  { "name": "DATA_DIR", "value": "emp-paired-end-sequences" },
+
+and, of course, the data URL.
+
+The Json files for Paired End analysis can be found `here <https://github.com/ibiom-cnr/Omics4Food/tree/master/data-analysis/templates/fastqc/fastqc_pe>`_ as reference.
 
