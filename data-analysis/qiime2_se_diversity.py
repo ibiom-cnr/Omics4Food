@@ -60,13 +60,21 @@ def run():
   run_step_01 = get_json("./qiime2_se_diversity/qiime2_diversity.1.json", template_dir, uuid)
   post(endpoint_dependency, run_step_01)
 
+  # Feature classifier
+  run_step_02 = get_json("./qiime2_se_diversity/qiime2_diversity.2.json", template_dir, uuid)
+  post(endpoint_dependency, run_step_02)
+
+  # Metadata tabulate
+  run_step_03 = get_json("./qiime2_se_diversity/qiime2_diversity.3.json", template_dir, uuid)
+  post(endpoint_dependency, run_step_03)
+
   # Create output tar file
-  #prepare_output = get_json("./qiime2_se_denoising/prepare_data_upload.json", template_dir, uuid)
-  #post(endpoint_dependency, prepare_output)
+  prepare_output = get_json("./qiime2_se_diversity/prepare_data_upload.json", template_dir, uuid)
+  post(endpoint_dependency, prepare_output)
 
   # Upload file to Swift
-  #data_upload = get_json("./qiime2_se_denoising/data_upload.json", template_dir, uuid)
-  #post(endpoint_dependency, data_upload)
+  data_upload = get_json("./qiime2_se_diversity/data_upload.json", template_dir, uuid)
+  post(endpoint_dependency, data_upload)
 
 
 #______________________________________

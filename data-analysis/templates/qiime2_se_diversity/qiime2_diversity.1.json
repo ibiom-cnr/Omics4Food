@@ -1,7 +1,7 @@
 {
   "name": "{{ job_run_id }}_01_qiime2_se_create_core_metric_phylogenetic",
   "description": "Create core-metrics-phylogenetic",
-  "command": "qiime diversity core-metrics-phylogenetic --i-phylogeny /data/$WORKING_DIR/$OUTPUT_DIR/rooted-tree.qza --i-table /data/$WORKING_DIR/$OUTPUT_DIR/table-dada2.qza --p-sampling-depth $SAMPLING_DEPTH --m-metadata-file /data/$WORKING_DIR/$OUTPUT_DIR/sample_metadata.tsv --output-dir /data/$WORKING_DIR/$OUTPUT_DIR/core-metrics-results",
+  "command": "qiime diversity core-metrics-phylogenetic --i-phylogeny /data/$WORKING_DIR/$OUTPUT_DIR/rooted-tree.qza --i-table /data/$WORKING_DIR/$OUTPUT_DIR/table-dada2.qza --p-sampling-depth $SAMPLING_DEPTH --m-metadata-file /data/$WORKING_DIR/$OUTPUT_DIR/sample_metadata.tsv --output-dir /data/$WORKING_DIR/$OUTPUT_DIR/core-metrics-results 2>&1 | tee /data/$WORKING_DIR/$OUTPUT_DIR/core-metrics-phylogenetic.log",
   "shell": true,
   "retries": 1,
   "cpus": 1.0,
