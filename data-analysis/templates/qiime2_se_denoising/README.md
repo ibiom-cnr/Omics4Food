@@ -1,3 +1,4 @@
-metadata_sample.tsv must be included in the output file.
+Qiime2 Single End Denoising Workflow
+====================================
 
-biom requires more resources
+[Documentation](https://omics4food.readthedocs.io/en/latest/tech_documentation/qiime2_se_denoising.html)
