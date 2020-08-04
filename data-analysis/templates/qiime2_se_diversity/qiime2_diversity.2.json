@@ -1,18 +1,11 @@
 {
-  "name": "{{ job_run_id }}_01_qiime2_se_feature_classifier",
+  "name": "{{ job_run_id }}_02_qiime2_se_feature_classifier",
   "description": "Feature classifier with vsearch",
-  "command": "qiime diversity core-metrics-phylogenetic --i-phylogeny /data/$WORKING_DIR/$OUTPUT_DIR/rooted-tree.qza --i-table /data/$WORKING_DIR/$OUTPUT_DIR/table-dada2.qza --p-sampling-depth $SAMPLING_DEPTH --m-metadata-file /data/$WORKING_DIR/$OUTPUT_DIR/sample_metadata.tsv --output-dir /data/$WORKING_DIR/$OUTPUT_DIR/core-metrics-results",
-
-
-
-qiime feature-classifier classify-consensus-vsearch --i-query rep-seqs-dada2.qza --i-reference-reads $REFERENCE_READS --i-reference-taxonomy $REFERENCE_TAXONOMY --p-threads $P_THREADS --o-classification taxonomy.qza
-
-
-
+  "command": "wget $REFERENCE_READS_URL -P /data/$WORKING_DIR/$INPUT_DIR && wget $REFERENCE_TAXONOMY_URL -P /data/$WORKING_DIR/$INPUT_DIR && qiime feature-classifier classify-consensus-vsearch --i-query /data/$WORKING_DIR/$OUTPUT_DIR/rep-seqs-dada2.qza --i-reference-reads /data/$WORKING_DIR/$INPUT_DIR/$REFERENCE_READS --i-reference-taxonomy /data/$WORKING_DIR/$INPUT_DIR/$REFERENCE_TAXONOMY --p-threads $P_THREADS --o-classification /data/$WORKING_DIR/$OUTPUT_DIR/taxonomy.qza",
   "shell": true,
   "retries": 1,
-  "cpus": 1.0,
-  "mem": 500.0,
+  "cpus": 4.0,
+  "mem": 6000.0,
   "schedule": "R1//PT1M",
   "parents": [
     "{{ job_run_id }}_01_qiime2_se_create_core_metric_phylogenetic"
@@ -40,8 +33,10 @@ qiime feature-classifier classify-consensus-vsearch --i-query rep-seqs-dada2.qza
     { "name": "INPUT_DIR", "value": "input_data" },
     { "name": "DATA_DIR", "value": "emp-single-end-sequences" },
     { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
-    { "name": "REFERENCE_READS", "value": "silva_132_99_16S.qza" },
-    { "name": "REFERENCE_TAXONOMY", "value": "taxonomy_7_levels.qza" },
+    { "name": "REFERENCE_READS", "value": "silva-138-99-seqs.qza" },
+    { "name": "REFERENCE_READS_URL", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/qiime2-reference-data/silva-138-99-seqs.qza" },
+    { "name": "REFERENCE_TAXONOMY", "value": "silva-138-99-tax.qza" },
+    { "name": "REFERENCE_TAXONOMY_URL", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/qiime2-reference-data/silva-138-99-tax.qza" },
     { "name": "P_THREADS", "value": "5" }
   ]
 }

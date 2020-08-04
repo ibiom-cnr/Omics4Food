@@ -1,18 +1,18 @@
 {
-  "name": "{{ job_run_id }}_prepare_data_upload",
-  "description": "Running fastqc job",
-  "command": "cd /data/$WORKING_DIR && tar cvzf $OUTPUT_FILE $OUTPUT_DIR/*",
+  "name": "{{ job_run_id }}_03_qiime2_se_metadata_tabulate",
+  "description": "Run qiime to tabulate metadata",
+  "command": "qiime metadata tabulate --m-input-file /data/$WORKING_DIR/$OUTPUT_DIR/taxonomy.qza --o-visualization /data/$WORKING_DIR/$OUTPUT_DIR/taxonomy.qzv",
   "shell": true,
   "retries": 1,
   "cpus": 1.0,
   "mem": 500.0,
   "schedule": "R1//PT1M",
   "parents": [
-    "{{ job_run_id }}_03_qiime2_se_metadata_tabulate"
+    "{{ job_run_id }}_02_qiime2_se_feature_classifier"
   ],
   "container": {
     "type": "DOCKER",
-    "image": "alpine",
+    "image": "qiime2/core:2019.10",
     "forcePullImage": true,
     "volumes": [
       {
@@ -32,7 +32,6 @@
     { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
     { "name": "INPUT_DIR", "value": "input_data" },
     { "name": "DATA_DIR", "value": "emp-single-end-sequences" },
-    { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
-    { "name": "OUTPUT_FILE", "value": "output_{{ job_run_id }}/qiime2_se_diversity.tar.gz" }
+    { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" }
   ]
 }
