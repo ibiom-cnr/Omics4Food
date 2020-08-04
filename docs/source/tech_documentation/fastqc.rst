@@ -72,10 +72,10 @@ ous step.
 
            The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
 
-	``USERNAME`` and ``PROJECT_ID``: Username and project-ID to identify the ReCaS Swift storage container and upload the data, making them available to download.
+	``USERNAME`` and ``PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
 
         ::
-        
+
           OUTPUT_PROTOCOL: swift+keystone
           OUTPUT_ENDPOINT: https://cloud.recas.ba.infn.it:5000/v3
           OS_IDENTITY_API_VERSION: 3
