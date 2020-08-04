@@ -17,5 +17,5 @@ The workflow
    :maxdepth: 2
 
    fastqc
-   qiime2_se
-   qiime2_pe
+   qiime2_se_denoising
+   qiime2_se_diversity
