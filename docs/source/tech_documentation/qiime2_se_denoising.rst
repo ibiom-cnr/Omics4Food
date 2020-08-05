@@ -93,7 +93,7 @@ The `Qiime2 <https://docs.qiime2.org/2020.6/tutorials/>`_ Denoising step for Sin
 
            This value has to be configurable on the LIMS.
 
-        ``{{ trim_len }}``: trimm off the first specified number of bases of each sequence.
+        ``{{ trim_left }}``: trimm off the first specified number of bases of each sequence.
 
 	Default value: 0
 
