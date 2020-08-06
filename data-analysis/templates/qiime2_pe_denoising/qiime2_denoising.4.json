@@ -33,10 +33,10 @@
     { "name": "INPUT_DIR", "value": "input_data" },
     { "name": "DATA_DIR", "value": "emp-paired-end-sequences" },
     { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
-    { "name": "TRUNC_LEN_F", "value": "150" },
-    { "name": "TRUNC_LEN_R", "value": "150" },
-    { "name": "TRUNC_Q", "value": "20" },
-    { "name": "TRIM_LEFT_F", "value": "13" },
-    { "name": "TRIM_LEFT_R", "value": "13" }
+    { "name": "TRUNC_LEN_F", "value": "{{ trunc_len_f }}" },
+    { "name": "TRUNC_LEN_R", "value": "{{ trunc_len_r}}" },
+    { "name": "TRUNC_Q", "value": "0" },
+    { "name": "TRIM_LEFT_F", "value": "{{ trim_left_f }}" },
+    { "name": "TRIM_LEFT_R", "value": "{{ trim_left_r }}" }
   ]
 }
