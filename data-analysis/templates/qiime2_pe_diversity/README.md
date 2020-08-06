@@ -1,9 +1,4 @@
-sample-metadata.tsv needs to be included in denoising outputs.
+Qiime2 Paired End (demultiplexed data) Diversity Workflow
+=========================================================
 
-
-
-
-Feature classifier
-------------------
-
-These step requires more resources. Current default is set to 4 CPU and 6 GB of memory. Please check the resources available on Mesos worker nodes to properly setup this threshold.
+[Documentation](https://omics4food.readthedocs.io/en/latest/tech_documentation/qiime2_pe_diversity.html)
