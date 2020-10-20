@@ -1,5 +1,5 @@
-Qiime 2 Pairede End (demultiplexed data): Denoising
-===================================================
+Qiime 2 Paired End (demultiplexed data): Denoising
+==================================================
 
 The `Qiime2 <https://docs.qiime2.org/2020.6/tutorials/>`_ Denoising step for Paired End demultiplexed data is made by 12 steps.
 
