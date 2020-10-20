@@ -12,7 +12,10 @@ template_dir = './templates'
 endpoint = 'https://90.147.75.16:4443/v1/scheduler/iso8601'
 endpoint_dependency = 'https://90.147.75.16:4443/v1/scheduler/dependency'
 chronos_username = 'admin'
-chronos_password = 'Delta552'
+
+from getpass import getpass
+print 'Type chronos password: '
+chronos_password =  getpass()
 
 
 #______________________________________
