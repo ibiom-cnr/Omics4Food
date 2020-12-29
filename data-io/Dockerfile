@@ -18,3 +18,7 @@ RUN chmod +x /usr/local/bin/swift-download
 # Copy upload script
 COPY ./swift_upload.sh /usr/local/bin/swift-upload
 RUN chmod +x /usr/local/bin/swift-upload
+
+# Copi lims API call script
+COPY ./lims_api_call.sh /usr/local/bin/lims-api-call
+RUN chmod +x /usr/local/bin/lims-api-call
