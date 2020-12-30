@@ -10,16 +10,11 @@
 # export OUTPUT_FILENAMES="output_{{ job_run_id }}/fastqc.tar.gz" # example: export OUTPUT_FILENAMES="output_376e18e5-fe11-491f-8111-2d6828cfee6b/fastqc.tar.gz"
 # export LIMS_API_METHOD="POST" # api_methods, e.g. GET, POST, ...
 # export LIMS_API_URL="http://90.147.75.142:5000/lims_api_mock/v1.0/update-output-url"
-#
-# User input:
-# $1: job_run_id
+# export JOB_RUN_ID="{{ job_run_id }}" # example export JOB_RUN_ID="376e18e5-fe11-491f-8111-2d6828cfee6b"
 #
 # Usage example:
-# bash lims_api_call.sh 376e18e5-fe11-491f-8111-2d6828cfee6b
+# bash lims_api_call.sh
 #
-
-# Get Job Run Unique ID
-JOB_RUN_ID=$1
 
 # Build output url
 username_hash=$(python ./create_container_id.py -n $USERNAME)
