@@ -110,7 +110,7 @@ Three new enviroment variables need to be added:
 
 .. warning::
 
-   ``LIMS_API_URL`` is the LIMS API URL, currently set to the test API.
+   ``LIMS_API_URL`` is the LIMS API URL, currently set to the test API URL.
 
 
 Paired End version
