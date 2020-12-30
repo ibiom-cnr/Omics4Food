@@ -92,10 +92,11 @@ ous step.
 
 The update version is located in a brach of the GitHub repository, `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/lims-api-call/data-analysis/templates/fastqc/data_upload_with_lims_call.json>`_.
 
-Three new enviroment variables need to be added:
+Three new enviroment variables that need to be added are:
 
 ::
 
+  JOB_RUN_ID: "{{ job_run_id }}"
   RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
   LIMS_API_METHOD: "POST"
   LIMS_API_URL: "http://90.147.75.142:5000/lims_api_mock/v1.0/update-output-url"
