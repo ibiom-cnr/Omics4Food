@@ -154,7 +154,7 @@ ous step.
 
    <30 Dec 2020>  - A test version of the same json file, with the possibility to call a test API, which will be replaced with the one provided by the LIMS, is available.
 
-The update version is located in a brach of the GitHub repository, `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/lims-api-call/data-analysis/templates/qiime_pe_diversity/data_upload_with_lims_call.json>`_.
+The update version is located in a brach of the GitHub repository, `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/lims-api-call/data-analysis/templates/qiime2_pe_diversity/data_upload_with_lims_call.json>`_.
 
 Three new enviroment variables that need to be added are:
 
