@@ -251,3 +251,30 @@ The `Qiime2 <https://docs.qiime2.org/2020.6/tutorials/>`_ Denoising step for Pai
      { "name": "OUTPUT_FILENAMES", "value": "output_{{ job_run_id }}/qiime2_pe_denoising.tar.gz" },
 
    and should match the output file name specified in the previous step.
+
+.. note::
+
+   <30 Dec 2020>  - A test version of the same json file, with the possibility to call a test API, which will be replaced with the one provided by the LIMS, is available.
+
+The update version is located in a brach of the GitHub repository, `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/lims-api-call/data-analysis/templates/qiime_pe_denoising/data_upload_with_lims_call.json>`_.
+
+Three new enviroment variables that need to be added are:
+
+::
+
+  JOB_RUN_ID: "{{ job_run_id }}"
+  RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
+  LIMS_API_METHOD: "POST"
+  LIMS_API_URL: "http://90.147.75.142:5000/lims_api_mock/v1.0/update-output-url"
+
+.. warning::
+
+   ``RECAS_URL_PREFIX`` is mandatory and can't be modified.
+
+.. warning::
+
+   ``LIMS_API_METHOD`` is a LIMS API specific method, currently set to ``POST``.
+
+.. warning::
+
+   ``LIMS_API_URL`` is the LIMS API URL, currently set to the test API URL.
