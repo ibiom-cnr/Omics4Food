@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="English">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Metabarcoding analysis of microbial communities</title>
+<link rel="stylesheet" type="text/css" href="./style.css" media="all">
+</head>
+
+<img src="images/header.png" alt="header" width="100%">
+<h1 align="center" > Analisi del microbioma  </h1>
+
+<h2 align="center"> Introduzione </h2>
+<p align="justify">Con il termine <strong>microbioma</strong> si indica l’insieme del patrimonio genetico e delle interazioni ambientali della totalità dei micro-organismi che colonizzano uno specifico <em>habitat</em>. Questo patrimonio è accessibile attraverso l’utilizzo di moderne applicazioni di biologia molecolare, e in particolare, tramite l’utilizzo delle tecnologie di <em>sequenziamento massivo del DNA</em> (<em>High Throughput DNA Sequencing o HTS</em>). Una di queste metodologie è definita “<strong>metabarcoding</strong>”: indica l’utilizzo di un <b>gene marker</b> o <b>barcode</b> (o per lo meno di una specifica regione di questo gene) capace di discriminare i diversi micro-organismi della comunità che vogliamo studiare, permettendone la rapida caratterizzazione. L’applicazione delle tecniche di sequenziamento massivo del DNA offre una visione completa delle dinamiche globali della popolazione microbica. Rispetto ai metodi tradizionali, i vantaggi dell’analisi della <em>biodiversità</em> microbica basata sull’HTS comprendono:
+<ul>
+    <li>1. identificazione di migliaia di microorganismi in una singola analisi</li>
+    <li>2. identificazione di microorganismi non coltivabili</li>
+    <li>3. possibilità di determinare l’abbondanza relativa delle diverse popolazioni</li>
+</ul>
+<hr />
+<h2 align="center"> Dati associati al Campione in analisi </h2>
+METADATA_DA_INSERIRE
+<hr />
+<h2 align="center"> Dati relativi al denoising dei dati di sequenziamento </h2>
+<p align="justify"> Il <strong>denoising</strong> è la procedura che permettere di ridurre l'effetto del rimore introdotto con amplificazione e sequenziamento. </p>
+<table , class="center" style="width:80%">
+  <tr>
+      <th>Input</th>
+      <th>Filtrate</th>
+      <th>% Filtrate</th>
+      <th>Denoised</th>
+      <th>% Denoised</th>
+  </tr>
+  TABELLA_DENOISING
+</table>
+<figure>
+    <img src="images/len_dist.png" alt="Phyla dist" width="600", height="600", class="center_figure">
+    <figcaption>Fig.1 - Distribuzione di lunghezza delle ASV osservate.</figcaption>
+</figure>
+<table , class="center" style="width:90%">
+  <tr>
+      <th>Min</th>
+      <th>>Media</th>
+      <th>Mediana</th>
+      <th>Max</th>
+  </tr>
+    TABELLA_ASV
+</table>
+<h5>   </h5>
+<hr />
+<h2 align="center"> Distribuzione dei taxa osservati </h2>
+<p align="justify"> Di seguito sono riportati i taxa più rappresentati per ciascun dei 7 maggiorni livelli della tassonomia, fino ad un massimo di 10. </p>
+<h3 align="center"> <em>Kingdom</em></h3>
+<table , class="center" style="width:80%">
+  <tr>
+      <th>Kingdom</th>
+      <th>Abbondanza relativa</th>
+  </tr>
+    TABELLA_KINGDOM
+</table>
+<hr />
+<h3 align="center"> <em>Phylum</em></h3>
+<table , class="center" style="width:80%">
+  <tr>
+      <th>Phylum</th>
+      <th>Abbondanza relativa</th>
+  </tr>
+    TABELLA_PHYLUM
+</table>
+<hr />
+<h5>   </h5>
+<h3 align="center"> <em>Class</em></h3>
+<table style="width:80%" class="center">
+  <tr>
+      <th>Class</th>
+      <th>Abbondanza relativa</th>
+  </tr>
+    TABELLA_CLASS
+</table>
+<hr />
+
+<h3 align="center"> <em>Order</em></h3>
+<table style="width:80%" class="center">
+  <tr>
+      <th>Order</th>
+      <th>Abbondanza relativa</th>
+  </tr>
+    TABELLA_ORDER
+</table>
+<hr />
+<h5>   </h5>
+<h3 align="center"> <em>Family</em></h3>
+<table style="width:80%" class="center">
+  <tr>
+      <th>Family</th>
+      <th>Abbondanza relativa</th>
+  </tr>
+    TABELLA_FAMILY
+</table>
+<hr />
+
+<h3 align="center"> <em>Genus</em></h3>
+<table style="width:80%" class="center">
+  <tr>
+      <th>Genus</th>
+      <th>Abbondanza relativa</th>
+  </tr>
+    TABELLA_GENUS
+</table>
+<hr />
+<h5>   </h5>
+<h3 align="center"> <em>Species</em></h3>
+<table style="width:80%" class="center">
+  <tr>
+      <th>Species</th>
+      <th>Abbondanza relativa</th>
+  </tr>
+    TABELLA_SPECIES
+</table>
+<hr />
+<h5>   </h5>
+</html>
