@@ -1,0 +1,102 @@
+body {
+  background-color: #FFFDFC;
+  font-family: "Times New Roman", serif;
+  font-size: 30px;
+}
+h1 {
+  color: navy;
+  margin-left: 35px;
+  font-family: "Palatino Linotype", serif;
+}
+h2 {
+  color: navy;
+  font-family: "Palatino Linotype", serif;
+}
+
+h5 {
+	page-break-before: always;
+}
+@page {
+  size: A4;
+}
+
+@page :left {
+  margin-left: 0.5cm;
+}
+
+@page :right {
+  margin-left: 0.5cm;
+}
+
+table {
+  width: 90%;
+  page-break-inside: avoid;
+  font-family: "Times New Roman",serif;
+  font-size: 20px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: center;
+}
+
+th {
+  background-color: #DADAD9;
+  color: black;
+  height: 30px;
+  border: 1px solid black;
+}
+
+td {
+	border: 1px solid black;
+	font-size: 15px;
+	border-collapse: collapse;
+	text-align: center;
+	vertical-align: center;
+}
+figure {
+  page-break-inside: avoid;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 5px;
+}
+
+thead {
+    display: table-row-group;
+}
+tr {
+    page-break-before: always;
+    page-break-after: always;
+    page-break-inside: avoid;
+}
+table {
+    word-wrap: break-word;
+}
+table td {
+    word-break: break-all;
+}
+
+.center_figure {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
