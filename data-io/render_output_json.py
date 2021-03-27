@@ -9,6 +9,9 @@ def cli_options():
 
   parser = argparse.ArgumentParser(description='Render jinja template')
 
+  parser.add_argument('--lims-idtenant', dest='lims_idtenant', help='LIMS IdTenant')
+  parser.add_argument('--lims-username', dest='lims_username', help='LIMS username')
+  parser.add_argument('--lims-password', dest='lims_password', help='LIMS user password')
   parser.add_argument('--id', dest='job_run_id', help='Job Run Unique ID')
   parser.add_argument('--url', dest='job_output_url', help='Job output URL')
   parser.add_argument('--dir', dest='template_dir', help='Template path')
@@ -26,7 +29,10 @@ def render_output_json():
 
   template = env.get_template(options.template)
 
-  rendered_template = template.render( job_run_id=options.job_run_id,
+  rendered_template = template.render( lims_idtenant=options.lims_idtenant,
+                                       lims_username=options.lims_username,
+                                       lims_password=options.lims_password,
+                                       job_run_id=options.job_run_id,
                                        job_output_url=options.job_output_url )
 
   print rendered_template
