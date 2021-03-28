@@ -7,7 +7,7 @@ WORKDIR /app/
 
 RUN apt-get update
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends curl python python-keystoneclient python-swiftclient python-pycurl
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends curl python python-keystoneclient python-swiftclient python-pycurl python-jinja2
 
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
