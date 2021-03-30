@@ -17,7 +17,6 @@
 # export LIMS_PASSWORD="****" # Lims
 # export LIMS_PROJECT_ID="3"
 # export LIMS_NOMESERVER="****"
-# export LIMS_API_METHOD="POST" # api_methods, e.g. GET, POST, ...
 # export LIMS_API_URL="****"
 #
 # Usage example:
