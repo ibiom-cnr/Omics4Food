@@ -47,12 +47,14 @@ def lims_api_call():
                         headers=headers,
                         data=rendered_template )
 
-  print resp.status_code
-  print resp.content
-
-  if resp.status_code != '200':
+  if resp.status_code != 200:
+    sys.stderr.write('[ERROR] cURL status code: ' + str(resp.status_code) + '\n')
+    sys.stderr.write('[ERROR] cURL response: ' + str(resp.content) + '\n')
     sys.exit(1)
-
+  else:
+    print resp.status_code
+    print resp.content
+    sys.exit(0)
 #______________________________________
 if __name__ == '__main__':
   lims_api_call()
