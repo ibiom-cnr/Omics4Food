@@ -30,9 +30,4 @@ project_id_hash=$(python ./create_container_id.py -n $LIMS_PROJECT_ID)
 OUTPUT_PATH="$RECAS_URL_PREFIX/$username_hash/$project_id_hash/$OUTPUT_FILENAMES"
 
 # Render json from jinja2 template
-output_json=$(python render_output_json.py --lims-idtenant $LIMS_IDTENANT --lims-username $LIMS_USERNAME --lims-password $LIMS_PASSWORD --id $JOB_RUN_ID --url $OUTPUT_PATH --dir . --template output.json.j2)
-echo $output_json
-
-# Call LIMS API
-env
-curl --header "Conten-tType: application/json; charset=utf-8; Host: $LIMS_NOMESERVER" --http1.1 --request $LIMS_API_METHOD --data "$output_json" $LIMS_API_URL
+python lims_api_call.py --lims-api-url $LIMS_API_URL --lims-nomeserver $LIMS_NOMESERVER --lims-idtenant $LIMS_IDTENANT --lims-username $LIMS_USERNAME --lims-password $LIMS_PASSWORD --id $JOB_RUN_ID --url $OUTPUT_PATH --dir . --template output.json.j2
