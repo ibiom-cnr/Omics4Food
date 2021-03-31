@@ -41,6 +41,9 @@ def split_options():
                         help="base report html",
                         action="store", required=False,
                         default="/Users/brunofosso/Documents/IBIOM/Progetti/INNONETWORK/PDF_generation/base_report/report_static.html")
+    parser.add_argument("-o", "--outdir", type=str,
+                        help="directory where output date will be stored",
+                        action="store", required=True)
     argcomplete.autocomplete(parser)
     return parser.parse_args()
 
@@ -183,7 +186,7 @@ def generate_denoising_table(_sample, denoising_data):
 def generate_len_plot(_sample, asv_table, asv2len, folder):
     _name = list(asv_table[asv_table[_sample] > 0].index)
     d = asv2len[asv2len["ASV"].isin(_name)]
-    plot_name = os.path.join(os.getcwd(), folder, "images", "len_dist.png")
+    plot_name = os.path.join(folder, "images", "len_dist.png")
     p = (ggplot(d, aes(x='LEN')) +
          geom_density(alpha=0.1, fill="red") +
          labs(title="Distribuzione della lunghezza delle ASV", x="lunghezza in nt", y="abbondanza relativa") +
@@ -224,13 +227,15 @@ def prepare_taxa_tables(tax_dict, _sample, lista_aggiunte):
     return lista_aggiunte
 
 
-def generate_report(_sample, _basic_report, sample2meta, denoising_data, asv2len, asv_table, taxa_dict):
+def generate_report(_sample, _basic_report, sample2meta, denoising_data, asv2len, asv_table, taxa_dict, _outdir):
     print(_sample)
     denoising_table = generate_denoising_table(_sample, denoising_data)
     if denoising_table:
         dTo = datetime.now()
-        folder = "{}_report_{}_{}_{}_{}_{}_{}".format(_sample, dTo.year, dTo.month, dTo.day, dTo.hour, dTo.minute,
-                                                      dTo.second)
+        folder = os.path.join(_outdir,
+                              "{}_report_{}_{}_{}_{}_{}_{}".format(_sample, dTo.year, dTo.month, dTo.day, dTo.hour,
+                                                                   dTo.minute,
+                                                                   dTo.second))
         if not os.path.exists(folder):
             os.mkdir(folder)
         base_folder_images = os.path.join(os.path.split(_basic_report)[0], "images")
@@ -268,7 +273,7 @@ def generate_report(_sample, _basic_report, sample2meta, denoising_data, asv2len
         # css = os.path.join(os.getcwd(), "style.css")
         pdfkit.from_file('report.html', '%s.pdf' % _sample, options=options)
         os.chdir(wd)
-        move(os.path.join(folder,'%s.pdf' % _sample),wd)
+        move(os.path.join(folder, '%s.pdf' % _sample), wd)
         make_archive("{}_data".format(folder), 'zip', folder)
         rmtree(folder)
     else:
@@ -277,12 +282,13 @@ def generate_report(_sample, _basic_report, sample2meta, denoising_data, asv2len
 
 if __name__ == "__main__":
     opt = split_options()
-    basic_report, metadata, den_stat_qza, rep_seq, asv_tab, barplot = \
-        opt.base_report, opt.metadata, opt.denoising_stats_qza, opt.asv_qza, opt.asv_table_qza, opt.tax_barplot
+    basic_report, metadata, den_stat_qza, rep_seq, asv_tab, barplot, outdir = \
+        opt.base_report, opt.metadata, opt.denoising_stats_qza, opt.asv_qza, opt.asv_table_qza, opt.tax_barplot, opt.outdir
     # inserire qui il check dei file
     sample2metadata, metadata_list = sample2feaures(metadata)
     denoising_info = sample2denosing_statisitcs(den_stat_qza, sample2metadata)
     asv_len_df, asv_table_df = sample2sequence_profile(rep_seq, asv_tab)
     tax_rank2df = import_taxonomy(barplot, metadata_list)
     for sample in sample2metadata:
-        generate_report(sample, basic_report, sample2metadata, denoising_info, asv_len_df, asv_table_df, tax_rank2df)
+        generate_report(sample, basic_report, sample2metadata, denoising_info, asv_len_df, asv_table_df, tax_rank2df,
+                        outdir)
