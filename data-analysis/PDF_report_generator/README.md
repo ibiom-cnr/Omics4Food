@@ -26,5 +26,6 @@ python ../generate_PDF_report.py \
     -a rep-seqs_16S.qza \
     -T table_16S.qza \
     -t taxa-bar-plots_16S_SKLEARN.qzv \
-    -b /PATH/TO/base_report/report_static.html 
+    -b /PATH/TO/base_report/report_static.html \
+    -o /PATH/TO/OUTDIR
 ```
