@@ -14,7 +14,7 @@ The scripts requires a folder containing all the stuffs needed to create an html
    conda install argcomplete
    conda install -c conda-forge plotnine
    ```  
-3. Download the the repository contenc on your machine:  
+3. Download the the repository content on your machine:  
    
    
 Usage
