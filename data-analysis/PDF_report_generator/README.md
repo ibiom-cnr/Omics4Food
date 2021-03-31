@@ -1,8 +1,8 @@
 Environment Configuration
 ===========
-This scripts generate a summary report of the metabarcoding analysis performed by using *QIIME2*.  
-It has been developed to be exectued in the same conda environment in which QIIME2 is executed.  
-The scripts requires a folder containing all the stuffs needed to create an html file who will be converted in PDF by using `wkhtmltopdf`.  
+This scripts generates a summary report of the metabarcoding analysis performed by using *QIIME2*.  
+It has been developed to be exectued in the same QIIME2 conda environment.  
+The scripts requires a folder containing all the stuffs needed to create an html file, who will be converted in PDF by using `wkhtmltopdf`.  
 
 1. Activate the appropriate *Conda* environment:  
     `conda activate qiime2-2019.9`  
