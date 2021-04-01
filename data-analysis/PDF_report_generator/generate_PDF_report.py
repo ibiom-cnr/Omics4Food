@@ -276,7 +276,7 @@ def generate_report(_sample, _basic_report, sample2meta, denoising_data, asv2len
         # css = os.path.join(os.getcwd(), "style.css")
         pdfkit.from_file('report.html', '%s.pdf' % _sample, options=options)
         os.chdir(wd)
-        move(os.path.join(folder, '%s.pdf' % _sample), wd)
+        move(os.path.join(folder, '%s.pdf' % _sample), _outdir)
         make_archive("{}_data".format(folder), 'zip', folder)
         rmtree(folder)
     else:
