@@ -97,7 +97,7 @@ def sample2denosing_statisitcs(denoising_qza, _sample2metadata):
     return sample2denoising_info
 
 
-def sample2sequence_profile(ASV_rep_seq_, ASV_table):
+def sample2sequence_profile(ASV_rep_seq_, ASV_table, _n_samples):
     asv2len = {}
     with ZipFile(ASV_rep_seq_, "r") as zipObj:
         for filename in zipObj.namelist():
@@ -118,7 +118,10 @@ def sample2sequence_profile(ASV_rep_seq_, ASV_table):
                 target = open("feature-table.biom", "wb")
                 with source, target:
                     copyfileobj(source, target)
-                table_df = load_table("feature-table.biom").to_dataframe()
+                if _n_samples == 1:
+                    table_df = load_table("feature-table.biom").to_dataframe(dense=True)
+                else:
+                    table_df = load_table("feature-table.biom").to_dataframe(dense=False)
                 break
     for name in ["dna-sequences.fasta", "feature-table.biom"]:
         try:
@@ -287,7 +290,7 @@ if __name__ == "__main__":
     # inserire qui il check dei file
     sample2metadata, metadata_list = sample2feaures(metadata)
     denoising_info = sample2denosing_statisitcs(den_stat_qza, sample2metadata)
-    asv_len_df, asv_table_df = sample2sequence_profile(rep_seq, asv_tab)
+    asv_len_df, asv_table_df = sample2sequence_profile(rep_seq, asv_tab, len(denoising_info))
     tax_rank2df = import_taxonomy(barplot, metadata_list)
     for sample in sample2metadata:
         generate_report(sample, basic_report, sample2metadata, denoising_info, asv_len_df, asv_table_df, tax_rank2df,
