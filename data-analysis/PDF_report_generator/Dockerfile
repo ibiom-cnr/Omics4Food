@@ -19,3 +19,6 @@ RUN conda install -n qiime2-2019.10 biopython
 RUN conda install -n qiime2-2019.10 argcomplete
 
 RUN conda install -n qiime2-2019.10 -c conda-forge plotnine
+
+RUN conda install -n qiime2-2019.10 -c bioconda wkhtmltopdf
+
