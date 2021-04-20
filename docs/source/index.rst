@@ -10,6 +10,8 @@ Welcome to Omics4Food's documentation!
    :maxdepth: 2
    :caption: User documentation
 
+   user_documentation/prepare_data.rst
+
 .. toctree::
    :maxdepth: 2
    :caption: Technical documentation
