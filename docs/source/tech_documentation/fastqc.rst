@@ -8,7 +8,7 @@ The quality assurance workflow is based on `FastQC <https://www.bioinformatics.b
 
 :Description: This step download data from the ReCaS Swift storage to the MESOS Cluster, for the analysis.
 
-:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/data_download.json>`_.
+:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/fastqc_pe/data_download.json>`_.
 
 :Input parameters:
 
@@ -24,7 +24,7 @@ The quality assurance workflow is based on `FastQC <https://www.bioinformatics.b
 
 	Mandatory: YES
 
-	Data URL `example <http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/4AFD40C4DF01B75F35CB90ECFE789D91/81EE76C6F5210A26CE981AD81155B17E/test-data.tar.gz>`_
+	Data URL `example <http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/4AFD40C4DF01B75F35CB90ECFE789D91/81EE76C6F5210A26CE981AD81155B17E/qiime_pe.tar.gz>`_
 
 
 ``Fastqc``
@@ -32,7 +32,7 @@ The quality assurance workflow is based on `FastQC <https://www.bioinformatics.b
 
 :Description: Quality assurance step based on `FastQC <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/>`_.
 
-:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/fastqc.json>`_.
+:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/fastqc_pe/fastqc.json>`_.
 
 :Input parameters:
 
@@ -46,7 +46,7 @@ The quality assurance workflow is based on `FastQC <https://www.bioinformatics.b
 
 :Description: Prepare data for the upload on ReCaS Swift. Currently compress outputs to a single tar.gz file.
 
-:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/prepare_data_upload.json>`_.
+:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/fastqc_pe/prepare_data_upload.json>`_.
 
 :Input parameters:
 
@@ -60,7 +60,7 @@ ous step.
 
 :Description: Upload data on ReCaS Swift.
 
-:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/data_upload.json>`_.
+:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/fastqc_pe/data_upload.json>`_.
 
 :Input parameters:
 
@@ -70,12 +70,33 @@ ous step.
 
         .. warning::
 
+           The following parameters are mandatory for each step requiring data Upload to contact the LIMS API.
+
+        ``LIMS_USERNAME`` and ``LIMS_PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
+
+        The other parameters are needed to contact the LIMS API.
+
+        ::
+
+          LIMS_IDTENANT: "00000000-0000-0000-0000-000000000000
+          LIMS_PASSWORD: "*****"
+          LIMS_NOMESERVER: "*****"
+          LIMS_API_METHOD: "POST"
+          LIMS_API_URL: "*****"
+
+        .. warning::
+
+           ``LIMS_API_METHOD`` is a LIMS API specific method, currently set to ``POST``.
+
+        .. warning::
+
            The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
 
 	``USERNAME`` and ``PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
 
         ::
 
+          RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
           OUTPUT_PROTOCOL: swift+keystone
           OUTPUT_ENDPOINT: https://cloud.recas.ba.infn.it:5000/v3
           OS_IDENTITY_API_VERSION: 3
@@ -85,49 +106,6 @@ ous step.
           OUTPUT_USERNAME: *****
           OUTPUT_PASSWORD: *****
 
+        .. warning::
 
-.. note::
-
-   <30 Dec 2020>  - A test version of the same json file, with the possibility to call a test API, which will be replaced with the one provided by the LIMS, is available.
-
-The update version is located in a brach of the GitHub repository, `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/lims-api-call/data-analysis/templates/fastqc/data_upload_with_lims_call.json>`_.
-
-Three new enviroment variables that need to be added are:
-
-::
-
-  JOB_RUN_ID: "{{ job_run_id }}"
-  RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
-  LIMS_API_METHOD: "POST"
-  LIMS_API_URL: "http://90.147.75.142:5000/lims_api_mock/v1.0/update-output-url"
-
-.. warning::
-
-   ``RECAS_URL_PREFIX`` is mandatory and can't be modified.
-
-.. warning::
-
-   ``LIMS_API_METHOD`` is a LIMS API specific method, currently set to ``POST``.
-
-.. warning::
-
-   ``LIMS_API_URL`` is the LIMS API URL, currently set to the test API URL.
-
-
-Paired End version
-------------------
-
-.. note::
-
-   For FastQC paired end and single end workflows are the same. 
-
-Only two variable has to be changed:
-
-::
-
-  { "name": "DATA_DIR", "value": "emp-paired-end-sequences" },
-
-and, of course, the data URL.
-
-The Json files for Paired End analysis can be found `here <https://github.com/ibiom-cnr/Omics4Food/tree/master/data-analysis/templates/fastqc/fastqc_pe>`_ as reference.
-
+           ``RECAS_URL_PREFIX`` is mandatory and can't be modified.
