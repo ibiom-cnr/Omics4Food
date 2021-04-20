@@ -1,7 +1,7 @@
 {
   "name": "{{ job_run_id }}_data_upload",
   "description": "Download data from swift",
-  "command": "swift-upload $USERNAME $PROJECT_ID",
+  "command": "swift-upload $LIMS_USERNAME $LIMS_PROJECT_ID && lims-api-call",
   "shell": true,
   "retries": 1,
   "cpus": 1.0,
@@ -30,10 +30,16 @@
   },
   "environmentVariables": [
     { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
-    { "name": "DATA_URL", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/4AFD40C4DF01B75F35CB90ECFE789D91/81EE76C6F5210A26CE981AD81155B17E/test-data.tar.gz" },
+    { "name": "DATA_URL", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/4AFD40C4DF01B75F35CB90ECFE789D91/81EE76C6F5210A26CE981AD81155B17E/qiime_pe.tar.gz" },
     { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" },
-    { "name": "USERNAME", "value": "testservizi"},
-    { "name": "PROJECT_ID", "value": "3"},
+    { "name": "LIMS_IDTENANT", "value": "00000000-0000-0000-0000-000000000000"},
+    { "name": "LIMS_USERNAME", "value": "testservizi"},
+    { "name": "LIMS_PASSWORD", "value": "*****"},
+    { "name": "LIMS_PROJECT_ID", "value": "3"},
+    { "name": "LIMS_NOMESERVER", "value": "*****"},
+    { "name": "LIMS_API_METHOD", "value": "POST" },
+    { "name": "LIMS_API_URL", "value": "*****" },
+    { "name": "RECAS_URL_PREFIX", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20" },
     { "name": "OUTPUT_PROTOCOL", "value": "swift+keystone"},
     { "name": "OUTPUT_ENDPOINT", "value": "https://cloud.recas.ba.infn.it:5000/v3"},
     { "name": "OS_IDENTITY_API_VERSION", "value": "3"},
@@ -43,6 +49,7 @@
     { "name": "OUTPUT_USERNAME", "value": "*****"},
     { "name": "OUTPUT_PASSWORD", "value": "*****"},
     { "name": "OUTPUT_FILENAMES", "value": "output_{{ job_run_id }}/fastqc.tar.gz" },
-    { "name": "UPLOAD_DIR", "value": "/data/{{ job_run_id }}" }
+    { "name": "UPLOAD_DIR", "value": "/data/{{ job_run_id }}" },
+    { "name": "JOB_RUN_ID", "value": "{{ job_run_id }}" }
   ]
 }
