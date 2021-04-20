@@ -92,8 +92,6 @@ ous step.
 
            The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
 
-	``USERNAME`` and ``PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
-
         ::
 
           RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
