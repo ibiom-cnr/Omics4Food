@@ -58,7 +58,7 @@ ous step.
 ``Data upload``
 ---------------
 
-:Description: Upload data on ReCaS Swift.
+:Description: Upload data on ReCaS Swift and contact the LIMS API for job status update.
 
 :Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/fastqc/fastqc_pe/data_upload.json>`_.
 

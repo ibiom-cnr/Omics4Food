@@ -215,7 +215,7 @@ The `Qiime2 <https://docs.qiime2.org/2020.6/tutorials/>`_ Denoising step for Pai
 ``Data upload``
 ---------------
 
-:Description: Upload data on ReCaS Swift.
+:Description: Upload data on ReCaS Swift and contact the LIMS API for job status update.
 
 :Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/qiime2_pe_denoising/data_upload.json>`_.
 
