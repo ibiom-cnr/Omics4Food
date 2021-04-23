@@ -244,7 +244,6 @@ The other parameters are needed to contact the LIMS API.
 
    ``LIMS_API_METHOD`` is a LIMS API specific method, currently set to ``POST`` and should not be changed.
 
-
 The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
 
 ::
