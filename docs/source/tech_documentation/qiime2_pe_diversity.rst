@@ -92,6 +92,32 @@ The input data of this step is the output of the :doc:`qiime2_pe_denoising` sect
 
         Mandatory: YES
 
+``Qiime2: Taxa Barplot``
+------------------------
+
+:Description: Run qimme to create taxa barplot.
+
+:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/qiime2_pe_diversity/qiime2_diversity.4.json>`_.
+
+:Input parameters:
+
+        ``{{ job_run_id }}``: Unique identifier of the run on MESOS: It is used to identfy the parent and dependent jobs and to create the working directory on MESOS cluster. Must be the same of the previous step.
+
+        Mandatory: YES
+
+``Generate PDF report``
+-----------------------
+
+:Description: This step generates a summary report of the metabarcoding analysis performed by using QIIME2.
+
+:Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/qiime2_pe_diversity/qiime2_diversity.5.json>`_.
+
+:Input parameters:
+
+        ``{{ job_run_id }}``: Unique identifier of the run on MESOS: It is used to identfy the parent and dependent jobs and to create the working directory on MESOS cluster. Must be the same of the previous step.
+
+        Mandatory: YES
+
 ``Prepare data for the upload``
 -------------------------------
 
@@ -113,7 +139,7 @@ ous step.
 ``Data upload``
 ---------------
 
-:Description: Upload data on ReCaS Swift.
+:Description: Upload data on ReCaS Swift and contact the LIMS API for job status update.
 
 :Json file: The json file is located `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/master/data-analysis/templates/qiime2_pe_diversity/data_upload.json>`_.
 
@@ -123,22 +149,37 @@ ous step.
 
         Mandatory: YES
 
-.. note::
+The following parameters are mandatory for each step requiring data Upload to contact the LIMS API.
 
-   The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
+``LIMS_USERNAME`` and ``LIMS_PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
 
-   ``USERNAME`` and ``PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
+The other parameters are needed to contact the LIMS API.
 
-   ::
-   
-     OUTPUT_PROTOCOL: swift+keystone
-     OUTPUT_ENDPOINT: https://cloud.recas.ba.infn.it:5000/v3
-     OS_IDENTITY_API_VERSION: 3
-     OS_PROJECT_DOMAIN_ID: default
-     OUTPUT_REGION: recas-cloud
-     OUTPUT_TENANT: *****
-     OUTPUT_USERNAME: *****
-     OUTPUT_PASSWORD: *****
+::
+
+  LIMS_IDTENANT: "00000000-0000-0000-0000-000000000000
+  LIMS_PASSWORD: "*****"
+  LIMS_NOMESERVER: "*****"
+  LIMS_API_METHOD: "POST"
+  LIMS_API_URL: "*****"
+
+.. warning::
+
+   ``LIMS_API_METHOD`` is a LIMS API specific method, currently set to ``POST`` and should not be changed.
+
+The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
+
+::
+
+  RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
+  OUTPUT_PROTOCOL: swift+keystone
+  OUTPUT_ENDPOINT: https://cloud.recas.ba.infn.it:5000/v3
+  OS_IDENTITY_API_VERSION: 3
+  OS_PROJECT_DOMAIN_ID: default
+  OUTPUT_REGION: recas-cloud
+  OUTPUT_TENANT: *****
+  OUTPUT_USERNAME: *****
+  OUTPUT_PASSWORD: *****
 
 .. note::
 
@@ -149,30 +190,3 @@ ous step.
      { "name": "OUTPUT_FILENAMES", "value": "output_{{ job_run_id }}/qiime2_pe_diversity.tar.gz" },
 
    and should match the output file name specified in the previous step.
-
-.. note::
-
-   <30 Dec 2020>  - A test version of the same json file, with the possibility to call a test API, which will be replaced with the one provided by the LIMS, is available.
-
-The update version is located in a brach of the GitHub repository, `here <https://raw.githubusercontent.com/ibiom-cnr/Omics4Food/lims-api-call/data-analysis/templates/qiime2_pe_diversity/data_upload_with_lims_call.json>`_.
-
-Three new enviroment variables that need to be added are:
-
-::
-
-  JOB_RUN_ID: "{{ job_run_id }}"
-  RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
-  LIMS_API_METHOD: "POST"
-  LIMS_API_URL: "http://90.147.75.142:5000/lims_api_mock/v1.0/update-output-url"
-
-.. warning::
-
-   ``RECAS_URL_PREFIX`` is mandatory and can't be modified.
-
-.. warning::
-
-   ``LIMS_API_METHOD`` is a LIMS API specific method, currently set to ``POST``.
-
-.. warning::
-
-   ``LIMS_API_URL`` is the LIMS API URL, currently set to the test API URL.
