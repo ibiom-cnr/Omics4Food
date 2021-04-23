@@ -225,41 +225,39 @@ The `Qiime2 <https://docs.qiime2.org/2020.6/tutorials/>`_ Denoising step for Pai
 
         Mandatory: YES
 
-.. note::
 
-   The following parameters are mandatory for each step requiring data Upload to contact the LIMS API.
+The following parameters are mandatory for each step requiring data Upload to contact the LIMS API.
 
-   ``LIMS_USERNAME`` and ``LIMS_PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
+``LIMS_USERNAME`` and ``LIMS_PROJECT_ID``: Username and project-ID to identify the ReCaS Swift directory and upload the data, making them available to download.
 
-   The other parameters are needed to contact the LIMS API.
+The other parameters are needed to contact the LIMS API.
 
-   ::
-  
-     LIMS_IDTENANT: "00000000-0000-0000-0000-000000000000
-     LIMS_PASSWORD: "*****"
-     LIMS_NOMESERVER: "*****"
-     LIMS_API_METHOD: "POST"
-     LIMS_API_URL: "*****"
+::
+
+  LIMS_IDTENANT: "00000000-0000-0000-0000-000000000000
+  LIMS_PASSWORD: "*****"
+  LIMS_NOMESERVER: "*****"
+  LIMS_API_METHOD: "POST"
+  LIMS_API_URL: "*****"
 
 .. warning::
 
    ``LIMS_API_METHOD`` is a LIMS API specific method, currently set to ``POST`` and should not be changed.
 
-.. note::
 
-   The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
+The following parameters are mandatory for each step requiring data Upload on ReCaS Swift and should not be changed.
 
-   ::
+::
 
-     RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
-     OUTPUT_PROTOCOL: swift+keystone
-     OUTPUT_ENDPOINT: https://cloud.recas.ba.infn.it:5000/v3
-     OS_IDENTITY_API_VERSION: 3
-     OS_PROJECT_DOMAIN_ID: default
-     OUTPUT_REGION: recas-cloud
-     OUTPUT_TENANT: *****
-     OUTPUT_USERNAME: *****
-     OUTPUT_PASSWORD: *****
+  RECAS_URL_PREFIX: "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20"
+  OUTPUT_PROTOCOL: swift+keystone
+  OUTPUT_ENDPOINT: https://cloud.recas.ba.infn.it:5000/v3
+  OS_IDENTITY_API_VERSION: 3
+  OS_PROJECT_DOMAIN_ID: default
+  OUTPUT_REGION: recas-cloud
+  OUTPUT_TENANT: *****
+  OUTPUT_USERNAME: *****
+  OUTPUT_PASSWORD: *****
 
 .. warning::
 
