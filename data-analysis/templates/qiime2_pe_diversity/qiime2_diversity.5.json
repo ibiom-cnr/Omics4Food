@@ -1,0 +1,37 @@
+{
+  "name": "{{ job_run_id }}_05_qiime2_pe_generate_pdf_report",
+  "description": "Run qiime to tabulate metadata",
+  "command": "python generate_PDF_report.py -m /data/$WORKING_DIR/$OUTPUT_DIR/sample_metadata.tsv -d /data/$WORKING_DIR/$OUTPUT_DIR/denoising-stats.qza -a /data/$WORKING_DIR/$OUTPUT_DIR/rep-seqs.qza -T /data/$WORKING_DIR/$OUTPUT_DIR/table.qza -t /data/$WORKING_DIR/$OUTPUT_DIR/taxa-bar-plots.qzv -b /app/base_report/report_static.html -o /data/$WORKING_DIR/$OUTPUT_DIR/",
+  "shell": true,
+  "retries": 1,
+  "cpus": 1.0,
+  "mem": 500.0,
+  "schedule": "R1//PT1M",
+  "parents": [
+    "{{ job_run_id }}_04_qiime2_pe_taxa_barplot"
+  ],
+  "container": {
+    "type": "DOCKER",
+    "image": "omics4food/generate-pdf-report",
+    "forcePullImage": true,
+    "volumes": [
+      {
+        "containerPath": "/data",
+        "hostPath": "/data",
+        "mode": "RW"
+      }
+    ],
+    "parameters": [
+      {
+        "key": "user",
+        "value": "root"
+      }
+    ]
+  },
+  "environmentVariables": [
+    { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
+    { "name": "INPUT_DIR", "value": "input_data" },
+    { "name": "DATA_DIR", "value": "emp-paired-end-sequences" },
+    { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" }
+  ]
+}
