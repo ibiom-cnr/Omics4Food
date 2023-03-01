@@ -1,5 +1,5 @@
 {
-  "name": "{{ job_run_id }}_fastqc",
+  "name": "qa_{{ job_run_id }}_fastqc",
   "description": "Running fastqc job",
   "command": "cd /data/$WORKING_DIR && mkdir -p $OUTPUT_DIR && fastqc $INPUT_DIR/$DATA_DIR/*.fastq.gz -o $OUTPUT_DIR",
   "shell": true,
