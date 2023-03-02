@@ -5,6 +5,7 @@ import uuid
 from jinja2 import Environment, FileSystemLoader
 import requests
 import json
+import argparse
 
 template_dir = './templates'
 endpoint = 'https://90.147.75.16:4443/v1/scheduler/iso8601'
@@ -14,6 +15,13 @@ chronos_username = 'admin'
 from getpass import getpass
 print 'Type chronos password: '
 chronos_password =  getpass()
+
+
+def cli_options():
+  parser = argparse.ArgumentParser(description='GeneView Render script')
+  parser.add_argument('--uuid', dest='user_uuid', help='Specific UUID from previous workflow step')
+
+  return parser.parse_args()
 
 #______________________________________
 def create_uuid():
@@ -46,6 +54,8 @@ def get_json(template_name, template_dir, uuid):
 #______________________________________
 def run():
 
+  options = cli_options()
+
   lst = os.listdir(template_dir)
   lst.sort()
   print lst
@@ -53,7 +63,12 @@ def run():
   ### Data download
 
   # generate parent uuid
-  uuid = create_uuid()
+  uuid=None
+  print(options.user_uuid)
+  if options.user_uuid is not None:
+    uuid = options.user_uuid
+  else:
+    uuid = create_uuid()
 
   # Download data
   data_download = get_json("./qiime2_pe_diversity/data_download.json", template_dir, uuid)
@@ -70,6 +85,14 @@ def run():
   # Metadata tabulate
   run_step_03 = get_json("./qiime2_pe_diversity/qiime2_diversity.3.json", template_dir, uuid)
   post(endpoint_dependency, run_step_03)
+
+  # Barplot creation
+  run_step_04 = get_json("./qiime2_pe_diversity/qiime2_diversity.4.json", template_dir, uuid)
+  post(endpoint_dependency, run_step_04)
+
+  # Create pdf report
+  run_step_05 = get_json("./qiime2_pe_diversity/qiime2_diversity.5.json", template_dir, uuid)
+  post(endpoint_dependency, run_step_05)
 
   # Create output tar file
   prepare_output = get_json("./qiime2_pe_diversity/prepare_data_upload.json", template_dir, uuid)
