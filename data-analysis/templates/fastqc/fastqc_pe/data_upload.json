@@ -1,5 +1,5 @@
 {
-  "name": "{{ job_run_id }}_data_upload",
+  "name": "qa_{{ job_run_id }}_data_upload",
   "description": "Download data from swift",
   "command": "swift-upload $LIMS_USERNAME $LIMS_PROJECT_ID && lims-api-call",
   "shell": true,
@@ -8,7 +8,7 @@
   "mem": 500.0,
   "schedule": "R1//PT1M",
   "parents": [
-    "{{ job_run_id }}_prepare_data_upload"
+    "qa_{{ job_run_id }}_prepare_data_upload"
   ],
   "container": {
     "type": "DOCKER",
