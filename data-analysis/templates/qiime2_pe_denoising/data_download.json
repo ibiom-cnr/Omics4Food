@@ -1,7 +1,7 @@
 {
-  "name": "{{ job_run_id }}",
+  "name": "q2den_{{ job_run_id }}",
   "description": "Download data from swift",
-  "command": "mkdir -p /data/$WORKING_DIR/$OUTPUT_DIR && cd /data/$WORKING_DIR && swift-download -u $DATA_URL -o $INPUT_DIR && mv $INPUT_DIR/* $INPUT_DIR/$DATA_DIR && mv $INPUT_DIR/$DATA_DIR/sample_metadata.tsv $INPUT_DIR/ && mv $INPUT_DIR/$DATA_DIR/primers.tsv $INPUT_DIR/",
+  "command": "rm -rf /data/$WORKING_DIR && mkdir -p /data/$WORKING_DIR/$OUTPUT_DIR && cd /data/$WORKING_DIR && swift-download -u $DATA_URL -o $INPUT_DIR && mv $INPUT_DIR/* $INPUT_DIR/$DATA_DIR && mv $INPUT_DIR/$DATA_DIR/sample_metadata.tsv $INPUT_DIR/ && mv $INPUT_DIR/$DATA_DIR/primers.tsv $INPUT_DIR/",
   "shell": true,
   "retries": 1,
   "cpus": 1.0,
@@ -27,7 +27,7 @@
   },
   "environmentVariables": [
     { "name": "WORKING_DIR", "value": "{{ job_run_id }}" },
-    { "name": "DATA_URL", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/4AFD40C4DF01B75F35CB90ECFE789D91/81EE76C6F5210A26CE981AD81155B17E/qiime_pe.tar.gz" },
+    { "name": "DATA_URL", "value": "http://cloud.recas.ba.infn.it:8080/v1/AUTH_cf2db2690546474f889e300445b3bf20/test-data/run_091219_and_090221.tar.gz" },
     { "name": "INPUT_DIR", "value": "input_data" },
     { "name": "DATA_DIR", "value": "emp-paired-end-sequences" },
     { "name": "OUTPUT_DIR", "value": "output_{{ job_run_id }}" }
