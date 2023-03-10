@@ -1,5 +1,5 @@
 {
-  "name": "{{ job_run_id }}_02_qiime2_pe_demux",
+  "name": "q2den_{{ job_run_id }}_02_qiime2_pe_demux",
   "description": "Run qiime 2 demultiplexing step",
   "command": "qiime demux emp-paired --m-barcodes-file /data/$WORKING_DIR/$INPUT_DIR/sample_metadata.tsv --m-barcodes-column barcode-sequence --i-seqs /data/$WORKING_DIR/$OUTPUT_DIR/out_import.qza --o-per-sample-sequences /data/$WORKING_DIR/$OUTPUT_DIR/demux.qza --o-error-correction-details /data/$WORKING_DIR/$OUTPUT_DIR/demux-details.qza --p-rev-comp-mapping-barcodes",
   "shell": true,
@@ -8,7 +8,7 @@
   "mem": 500.0,
   "schedule": "R1//PT1M",
   "parents": [
-    "{{ job_run_id }}_01_qiime2_pe_import"
+    "q2den_{{ job_run_id }}_01_qiime2_pe_import"
   ],
   "container": {
     "type": "DOCKER",
