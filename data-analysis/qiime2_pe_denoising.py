@@ -23,6 +23,7 @@ def cli_options():
   parser = argparse.ArgumentParser(description='GeneView Render script')
   parser.add_argument('--demultiplexed', dest='demultiplexed_data', default=False, action='store_true', help='Analyse demultiplexed data')
   parser.add_argument('--multiplexed', dest='multiplexed_data', default=False, action='store_true', help='Analyse multiplexed data')
+  parser.add_argument('--uuid', dest='user_uuid', help='Specific UUID from previous workflow step')
 
   return parser.parse_args()
 
@@ -74,7 +75,12 @@ def run():
   ### Data download
 
   # generate parent uuid
-  uuid = create_uuid()
+  uuid=None
+  print(options.user_uuid)
+  if options.user_uuid is not None:
+    uuid = options.user_uuid
+  else:
+    uuid = create_uuid()
 
   # Download data
   data_download = get_json("./qiime2_pe_denoising/data_download.json", template_dir, uuid)

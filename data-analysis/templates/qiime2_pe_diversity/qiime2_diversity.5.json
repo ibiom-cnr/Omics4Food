@@ -1,5 +1,5 @@
 {
-  "name": "{{ job_run_id }}_05_qiime2_pe_generate_pdf_report",
+  "name": "q2div_{{ job_run_id }}_05_qiime2_pe_generate_pdf_report",
   "description": "Run qiime to tabulate metadata",
   "command": "python generate_PDF_report.py -m /data/$WORKING_DIR/$OUTPUT_DIR/sample_metadata.tsv -d /data/$WORKING_DIR/$OUTPUT_DIR/denoising-stats.qza -a /data/$WORKING_DIR/$OUTPUT_DIR/rep-seqs.qza -T /data/$WORKING_DIR/$OUTPUT_DIR/table.qza -t /data/$WORKING_DIR/$OUTPUT_DIR/taxa-bar-plots.qzv -b /app/base_report/report_static.html -o /data/$WORKING_DIR/$OUTPUT_DIR/",
   "shell": true,
@@ -8,7 +8,7 @@
   "mem": 500.0,
   "schedule": "R1//PT1M",
   "parents": [
-    "{{ job_run_id }}_04_qiime2_pe_taxa_barplot"
+    "q2div_{{ job_run_id }}_04_qiime2_pe_taxa_barplot"
   ],
   "container": {
     "type": "DOCKER",

@@ -1,5 +1,5 @@
 {
-  "name": "{{ job_run_id }}_06_qiime2_pe_feature_table_tabulate_seqs",
+  "name": "q2den_{{ job_run_id }}_06_qiime2_pe_feature_table_tabulate_seqs",
   "description": "Run qiime future table tabulate seqs",
   "command": "qiime feature-table tabulate-seqs --i-data /data/$WORKING_DIR/$OUTPUT_DIR/rep-seqs.qza --o-visualization /data/$WORKING_DIR/$OUTPUT_DIR/rep-seqs.qzv",
   "shell": true,
@@ -8,7 +8,7 @@
   "mem": 500.0,
   "schedule": "R1//PT1M",
   "parents": [
-    "{{ job_run_id }}_05_qiime2_pe_feature_table_summarize"
+    "q2den_{{ job_run_id }}_05_qiime2_pe_feature_table_summarize"
   ],
   "container": {
     "type": "DOCKER",

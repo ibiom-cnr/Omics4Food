@@ -1,5 +1,5 @@
 {
-  "name": "{{ job_run_id }}_07_qiime2_pe_metadata_tabulate",
+  "name": "q2den_{{ job_run_id }}_07_qiime2_pe_metadata_tabulate",
   "description": "Run qiime to tabulate metadata",
   "command": "qiime metadata tabulate --m-input-file /data/$WORKING_DIR/$OUTPUT_DIR/denoising-stats.qza --o-visualization /data/$WORKING_DIR/$OUTPUT_DIR/denoising-stats.qzv",
   "shell": true,
@@ -8,7 +8,7 @@
   "mem": 500.0,
   "schedule": "R1//PT1M",
   "parents": [
-    "{{ job_run_id }}_06_qiime2_pe_feature_table_tabulate_seqs"
+    "q2den_{{ job_run_id }}_06_qiime2_pe_feature_table_tabulate_seqs"
   ],
   "container": {
     "type": "DOCKER",

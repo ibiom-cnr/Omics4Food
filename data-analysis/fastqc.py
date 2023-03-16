@@ -71,6 +71,8 @@ def run():
   data_upload = get_json("./fastqc/data_upload.json", template_dir, uuid)
   post(endpoint_dependency, data_upload)
 
+  # Print uuid for next steps 
+  print(uuid)
 
 #______________________________________
 if __name__ == '__main__':
