@@ -1,5 +1,5 @@
 {
-  "name": "{{ job_run_id }}_08_qiime2_pe_generate_phylogenetic_tree",
+  "name": "q2den_{{ job_run_id }}_08_qiime2_pe_generate_phylogenetic_tree",
   "description": "Run qiime to generate a tree for phylogenetic diversity analyses",
   "command": "qiime phylogeny align-to-tree-mafft-fasttree --i-sequences /data/$WORKING_DIR/$OUTPUT_DIR/rep-seqs.qza --o-alignment /data/$WORKING_DIR/$OUTPUT_DIR/aligned-rep-seqs.qza --o-masked-alignment /data/$WORKING_DIR/$OUTPUT_DIR/masked-aligned-rep-seqs.qza --o-tree /data/$WORKING_DIR/$OUTPUT_DIR/unrooted-tree.qza --o-rooted-tree /data/$WORKING_DIR/$OUTPUT_DIR/rooted-tree.qza",
   "shell": true,
@@ -8,7 +8,7 @@
   "mem": 500.0,
   "schedule": "R1//PT1M",
   "parents": [
-    "{{ job_run_id }}_07_qiime2_pe_metadata_tabulate"
+    "q2den_{{ job_run_id }}_07_qiime2_pe_metadata_tabulate"
   ],
   "container": {
     "type": "DOCKER",
