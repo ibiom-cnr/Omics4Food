@@ -12,7 +12,7 @@
   ],
   "container": {
     "type": "DOCKER",
-    "image": "omics4food/generate-pdf-report",
+    "image": "quay.io/omics4food/generate-pdf-report",
     "forcePullImage": true,
     "volumes": [
       {
